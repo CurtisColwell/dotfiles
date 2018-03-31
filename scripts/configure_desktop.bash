@@ -14,7 +14,6 @@ main()
 	remove_stuff
 	link_stuff
 	setup_vim
-	configure_thunderbird
 	configure_gsettings
 	configure_systemd
 
@@ -58,25 +57,6 @@ setup_vim()
 	echo "Vim setup updated."
 }
 
-configure_thunderbird()
-{
-	# Thunderbird
-	TB_PROFILE='Ian'
-	TB_PROFILE_DIR="$HOME/.thunderbird/$TB_PROFILE"
-	if [ -d $TB_PROFILE_DIR ] && hash thunderbird 2>/dev/null ; then
-		# Remove any existing links or files
-		rm -f ~/.thunderbird/Ian/ImapMail/imap-mail.outlook.com/msgFilterRules.dat
-		rm -f ~/.thunderbird/Ian/ImapMail/imap.gmail.com/msgFilterRules.dat
-		rm -f ~/.thunderbird/Ian/ImapMail/connect.uwaterloo.ca/msgFilterRules.dat
-
-		ln -sf "$HOME/sync/dotfiles/thunderbird/imap-mail.outlook.com/msgFilterRules.dat" ~/.thunderbird/Ian/ImapMail/imap-mail.outlook.com/msgFilterRules.dat
-		ln -sf "$HOME/sync/dotfiles/thunderbird/imap.gmail.com/msgFilterRules.dat" ~/.thunderbird/Ian/ImapMail/imap.gmail.com/msgFilterRules.dat
-		ln -sf "$HOME/sync/dotfiles/thunderbird/connect.uwaterloo.ca/msgFilterRules.dat" ~/.thunderbird/Ian/ImapMail/connect.uwaterloo.ca/msgFilterRules.dat
-	else
-		echo "Warning: no thunderbird profile named $TB_PROFILE exists, skipping thunderbird configuration"
-	fi
-}
-
 configure_gsettings()
 {
 	gsettings set com.canonical.Unity.Launcher favorites \
@@ -91,9 +71,6 @@ configure_gsettings()
 
 	gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
 	gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ icon-size 42
-
-	# Disable sticky edges
-	dconf write /org/compiz/profiles/unity/plugins/unityshell/launcher-capture-mouse false
 
 	# Default apps
 	xdg-settings set default-web-browser opera.desktop
