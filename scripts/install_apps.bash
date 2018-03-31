@@ -61,9 +61,6 @@ MAIN_APPS=(
 
 # Apps not usually needed on 'work' machines
 ENTERTAINMENT_APPS=(
-	minecraft-installer
-	nautilus-dropbox
-	spotify-client
 	steam
 )
 
