@@ -59,21 +59,7 @@ setup_vim()
 
 configure_gsettings()
 {
-	gsettings set com.canonical.Unity.Launcher favorites \
-		"['application://unity-control-center.desktop',
-		'application://gnome-system-monitor.desktop',
-		'application://org.gnome.Nautilus.desktop',
-		'application://opera.desktop',
-		'application://atom.desktop',
-		'unity://expo-icon',
-		'unity://devices',
-		'unity://running-apps']"
-
 	gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
-	gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ icon-size 42
-
-	# Default apps
-	xdg-settings set default-web-browser opera.desktop
 }
 
 configure_systemd()
